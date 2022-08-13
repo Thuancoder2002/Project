@@ -1,20 +1,86 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
-{% block title %}Hello ClassroomController!{% endblock %}
+{% block body %} 
+<div class="container col-md-10 text-center mt-3">
+<tr>
+        <th colspan="3" ><li><a class="text text-primary"><h2>List Class<h2></a></li></th>
+        {% if is_granted ('ROLE_ADMIN') %}
+        <th> <a class="btn btn-info text-center" href="{{ path('classroom_add')}}">Add new class</a>
+        </th>
+        {% endif %}
+        <form action="" method="post">
+			<input type="search" name="name" id="">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		</form>
+	
+		<table class="table table-info table-hover mt-5">
+			<tr>
+				
+					<select onchange="window.location.href=this.value">
+						<option>Sort</option>
+						<option value="">Ascending</option>
+						<option value="">Descending</option>
+					</select>
+ </tr>
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+ 
+<table class="table table-info">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Name Class</th>
+     
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+ 
+    {% set i = 1 %}
+    {% for classroom in classroom %}
+        <tr>
+            <td>{{ i }}</td>
+            <td>{{ classroom.name }}</td>
+           
+                     
+               
+                 {# {% if major.classrooms != null %}
+                       <ul>
+                        {% for classroom in major.clasroom %}
+                           <li>
+                                 {{ classroom.name }}
+                              </a>
+                         {% else %}
+                        N/A
+                           </li>
+                        {% endfor %}
+                        
+                     </ul>
+                     
+                {% endif %}  #}
+            <td>
+          
+                <a href="{{path('classroom_detail',{'id': classroom.id})}}">
+                <img src="{{ asset('images/file.png')}}" width="30" height="30">
+                </a>
+                {% if is_granted ('ROLE_ADMIN') %}
+                <a href="{{path('classroom_edit',{'id': classroom.id})}}">
+                    <img src="{{ asset('images/edit.png')}}" width="30" height="30">
+                </a>
+                <a  href="{{path('classroom_delete',{'id': classroom.id})}}"
+                onclick="return confirm('Are you sure to delete this Todo ?')";
+                >
+                    <img src="{{ asset('images/delete.png')}}" width="30" height="30">
+                </a>
+                {% endif %}
+            </td>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/Project/projectweb/src/Controller/ClassroomController.php'|file_link(0) }}">src/Controller/ClassroomController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/Project/projectweb/templates/classroom/index.html.twig'|file_link(0) }}">templates/classroom/index.html.twig</a></code></li>
-    </ul>
+                 
+           
+        </tr>
+        {% set i = i + 1 %}
+    {% endfor %}
+    </tbody>
+  </table>
 </div>
 {% endblock %}
