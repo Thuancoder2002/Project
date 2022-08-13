@@ -39,23 +39,6 @@
         <tr>
             <td>{{ i }}</td>
             <td>{{ classroom.name }}</td>
-           
-                     
-               
-                 {# {% if major.classrooms != null %}
-                       <ul>
-                        {% for classroom in major.clasroom %}
-                           <li>
-                                 {{ classroom.name }}
-                              </a>
-                         {% else %}
-                        N/A
-                           </li>
-                        {% endfor %}
-                        
-                     </ul>
-                     
-                {% endif %}  #}
             <td>
           
                 <a href="{{path('classroom_detail',{'id': classroom.id})}}">
