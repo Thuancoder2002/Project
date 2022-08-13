@@ -1,0 +1,10 @@
+{% form_theme ClassForm 'bootstrap_5_layout.html.twig' %}
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container col-md-7 text-center">
+   <h2 class="text text-warning">Add new Class</h2>
+   {{ form_start (ClassForm) }}
+   {{ form_end (ClassForm) }}
+</div>
+{% endblock %}
