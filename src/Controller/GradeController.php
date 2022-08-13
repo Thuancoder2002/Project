@@ -8,11 +8,5 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class GradeController extends AbstractController
 {
-    #[Route('/grade', name: 'app_grade')]
-    public function index(): Response
-    {
-        return $this->render('grade/index.html.twig', [
-            'controller_name' => 'GradeController',
-        ]);
-    }
+
 }
