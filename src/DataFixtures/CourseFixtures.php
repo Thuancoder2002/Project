@@ -22,4 +22,3 @@ class CourseFixtures extends Fixture
         $manager->flush();
     }
 }
-
