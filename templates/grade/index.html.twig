@@ -1,20 +1,98 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello GradeController!{% endblock %}
+{% extends "base.html.twig" %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container col-md-10 text-center mt-3">
+<tr>
+        <th colspan="3" ><li><a class="text text-primary"><h2>List of Course<h2></a></li></th>
+         {% if is_granted ('ROLE_ADMIN') or is_granted ('ROLE_TEACHER')%}
+        <th> <a class="btn btn-info text-center" href="{{ path('grade_add')}}">Add new grade</a>
+        </th>
+        {% endif %}
+        <form action="" method="post">
+			<input type="search" name="name" id="">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		</form>
+	
+		<table class="table table-info table-hover mt-5">
+                <tr>
+                    
+                        <select onchange="window.location.href=this.value">
+                            <option>Sort</option>
+                            <option value="">Ascending</option>
+                            <option value="">Descending</option>
+                        </select>
+                </tr>
+ </div>
+<table class="table table-info">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Student ID</th>
+            <th>Scores</th>
+            <th>Teacher grading</th>
+            <th>Subjects</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+ 
+    {% set i = 1 %}
+    {% for grade in grade %}
+        <tr>
+            <td>{{ i }}</td> 
+             <td>{% if grade.student != null %}
+                      <a>
+                           {{ grade.student.studentid }} 
+                        </a>
+                     {% else %}
+                        N/A
+                     {% endif %}
+                        </td>
+            
+            <td>{{ grade.grade }}đ</td>
+            
+            <td>{% if grade.teacher != null %}
+                      <a>
+                           {{ grade.teacher.name }} 
+                        </a>
+                     {% else %}
+                        N/A
+                     {% endif %}
+             </td>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            <td>{% if grade.course != null %}
+                      <a>
+                           {{ grade.course.name }} 
+                        </a>
+                     {% else %}
+                        N/A
+                     {% endif %}
+             </td>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/Project/projectweb/src/Controller/GradeController.php'|file_link(0) }}">src/Controller/GradeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/Project/projectweb/templates/grade/index.html.twig'|file_link(0) }}">templates/grade/index.html.twig</a></code></li>
-    </ul>
-</div>
+             
+
+            <td>{{ grade.comment }}</td>
+             {% if is_granted ('ROLE_ADMIN') or is_granted ('ROLE_TEACHER')%}
+            
+            <td>
+          
+               
+                <a href="{{path('grade_edit',{'id': grade.id})}}">
+                    <img src="{{ asset('images/edit.png')}}" width="30" height="30">
+                </a>
+                <a  href="{{path('grade_delete',{'id': grade.id})}}"
+                onclick="return confirm('Are you sure to delete this Todo ?')";
+                >
+                    <img src="{{ asset('images/delete.png')}}" width="30" height="30">
+                </a>
+            </td>
+            {% endif %}
+            
+        </tr>
+        {% set i = i + 1 %}
+    {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
+
+
