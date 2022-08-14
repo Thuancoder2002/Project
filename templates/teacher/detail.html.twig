@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container col-md-8 mt-3">
+   <div class="row">
+      <div class="col-md-4">
+         <div class="card">
+            <img src="{{ teacher.image }}" width="315" height="250">
+         </div>
+      </div>
+      <div class="col-md-8">
+         <div class="card">
+            <div class="card-header">
+             <h1 class="text-center">Infomation of Teacher</h1>
+            </div>
+   
+               <div class="card-body">
+                <h1 class="text text-primary text-center">{{ teacher.name }} </h1>
+                  <h3 class="text text-info">Date of brithday: {{ teacher.birthday | date ('d/m/Y') }} </h3>
+                  
+                  <h3 class="text text-success">Email Contact: {{ teacher.email }} </h3>
+                  <h3 class="text text-success">Email Contact: {{ teacher.address }} </h3>
+
+                  <h3 class="text text-success">Phone Number: {{ teacher.phone }} </h3>
+         
+                  </h3> 
+                  <h3 class="text text-warning">Subjects being taught: </h3>
+                  {% if teacher.courses != null %}
+                       <ul>
+                        {% for course in teacher.courses %}
+                           <li>
+                                 {{ course.name }}
+                              </a>
+                         {% else %}
+                        N/A
+                           </li>
+                        {% endfor %}
+                        
+                     </ul>
+                     
+                {% endif %}  
+               </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}

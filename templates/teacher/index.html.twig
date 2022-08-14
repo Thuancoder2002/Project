@@ -1,20 +1,72 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello TeacherController!{% endblock %}
+{% extends "base.html.twig" %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container  text-center ">
+ {% if is_granted ('ROLE_ADMIN') %}
+   <tr>
+        <th colspan="3" ><li><a class="text text-primary"><h2>List of Teacher<h2></a></li></th>
+        <th> <a class="btn btn-info text-center" href="{{ path('teacher_add')}}">Add new Teacher</a>
+        </th>
+{% endif %}
+        <form action="{{path('teacher_search')}}" method="post">
+			<input type="search" name="name" id="">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		</form>
+	
+		<table class="table table-info table-hover mt-5">
+			<tr>
+				
+					<select onchange="window.location.href=this.value">
+						<option>Sort</option>
+						<option value="{{path('teacher_asc')}}">Ascending</option>
+						<option value="{{path('teacher_desc')}}">Descending</option>
+					</select>
+ </tr>
+<table class="table table-info">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Image</th>
+            <th>Teacher Name</th>
+            <th>Email Contact</th>
+             {% if is_granted ('ROLE_ADMIN') %}
+            <th>Menu</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+ 
+    {% set i = 1 %}
+    {% for teacher in teacher %}
+        <tr>
+            <td>{{ i }}</td>
+            <td>
+						<a href="{{ path('teacher_detail', {'id' : teacher.id })}} ">
+							<img src="{{ teacher.image }}" width="150" height="150">
+					</a>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/Project/projectweb/src/Controller/TeacherController.php'|file_link(0) }}">src/Controller/TeacherController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/Project/projectweb/templates/teacher/index.html.twig'|file_link(0) }}">templates/teacher/index.html.twig</a></code></li>
-    </ul>
+		    </td>
+           
+            <td>{{ teacher.name }}</td>
+            <td>{{ teacher.email }}</td>
+            {% if is_granted ('ROLE_ADMIN') %}
+            <td>
+                 
+                <a href="{{path('teacher_edit',{'id': teacher.id})}}">
+                    <img src="{{ asset('images/edit.png')}}" width="30" height="30">
+                </a>
+                <a  href="{{path('teacher_delete',{'id': teacher.id})}}"
+                onclick="return confirm('Are you sure to delete this Todo ?')";
+                >
+                    <img src="{{ asset('images/delete.png')}}" width="30" height="30">
+                </a>
+            </td>
+            {% endif %}
+        </tr>
+        {% set i = i + 1 %}
+    {% endfor %}
+    </tbody>
+</table>
 </div>
 {% endblock %}
