@@ -19,7 +19,7 @@ class TeacherController extends AbstractController
       $teacher=$this->getDoctrine()->getRepository(Teacher::class)->findAll();
         if (!$teacher) {
             throw $this->createNotFoundException(
-                'No students found in the database.'
+                'No teachers found in the database.'
             );
         }
         return $this->render('teacher/index.html.twig', [
@@ -40,7 +40,7 @@ class TeacherController extends AbstractController
          }else{
             $this->addFlash(
                'Error',
-               'Todo not found.Please try again!'
+               'Teacher not found.Please try again!'
             );
             return $this->redirectToRoute('teacher_index');
         }
@@ -61,7 +61,7 @@ class TeacherController extends AbstractController
                 $manager->flush();
                 $this->addFlash(
                'Success',
-               'You have Successfully added'
+               'You add Successfully'
             );  
             return $this->redirectToRoute("teacher_index");
 
@@ -77,12 +77,12 @@ class TeacherController extends AbstractController
      public function teacherDelete ($id, ManagerRegistry $managerRegistry) {
      $teacher = $managerRegistry->getRepository(Teacher::class)->find($id);
      if ($teacher == null) {
-        $this->addFlash('Warning', 'Book not existed !');
+        $this->addFlash('Warning', 'Teacher not existed !');
      } else {
         $manager = $managerRegistry->getManager();
         $manager->remove($teacher);
         $manager->flush();
-        $this->addFlash('Info', 'Delete book succeed !');
+        $this->addFlash('Info', 'Delete Teacher succeed !');
      }
      return $this->redirectToRoute('teacher_index');
    }
@@ -100,7 +100,7 @@ class TeacherController extends AbstractController
             $manager->flush();
             $this->addFlash(
            'Success',
-           'You have Successfully added'
+           'You edit Successfully '
         );  
         return $this->redirectToRoute("teacher_index");
 

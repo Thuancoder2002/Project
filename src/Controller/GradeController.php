@@ -39,7 +39,7 @@ class GradeController extends AbstractController
                 $manager->flush();
                 $this->addFlash(
                'Success',
-               'You have Successfully added'
+               'You add Successfully '
             );  
             return $this->redirectToRoute("grade_index");
 
@@ -54,12 +54,12 @@ class GradeController extends AbstractController
        public function gradeDelete($id,ManagerRegistry $managerRegistry){
          $grade = $managerRegistry->getRepository(Grade::class)->find($id);
      if ($grade == null) {
-        $this->addFlash('Warning', 'Book not existed !');
+        $this->addFlash('Warning', 'Grade not existed !');
      } else {
         $manager = $managerRegistry->getManager();
         $manager->remove($grade);
         $manager->flush();
-        $this->addFlash('Info', 'Delete book succeed !');
+        $this->addFlash('Info', 'Delete grade succeed !');
      }
      return $this->redirectToRoute('grade_index');
 
@@ -78,7 +78,7 @@ class GradeController extends AbstractController
                 $manager->flush();
                 $this->addFlash(
                'Success',
-               'You have Successfully added'
+               'You edit Successfully'
             );  
             return $this->redirectToRoute("grade_index");
 
