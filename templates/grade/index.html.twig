@@ -4,24 +4,22 @@
 <div class="container col-md-10 text-center mt-3">
 <tr>
         <th colspan="3" ><li><a class="text text-primary"><h2>List of Course<h2></a></li></th>
-         {% if is_granted ('ROLE_ADMIN') or is_granted ('ROLE_TEACHER')%}
-        <th> <a class="btn btn-info text-center" href="{{ path('grade_add')}}">Add new grade</a>
+        <th> <a class="btn btn-info text-center" href="{{ path('grade_add')}}">Add new Course</a>
         </th>
-        {% endif %}
         <form action="" method="post">
 			<input type="search" name="name" id="">
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 		</form>
 	
 		<table class="table table-info table-hover mt-5">
-                <tr>
-                    
-                        <select onchange="window.location.href=this.value">
-                            <option>Sort</option>
-                            <option value="">Ascending</option>
-                            <option value="">Descending</option>
-                        </select>
-                </tr>
+			<tr>
+				
+					<select onchange="window.location.href=this.value">
+						<option>Sort</option>
+						<option value="">Ascending</option>
+						<option value="">Descending</option>
+					</select>
+ </tr>
  </div>
 <table class="table table-info">
     <thead>
@@ -72,11 +70,10 @@
              
 
             <td>{{ grade.comment }}</td>
-             {% if is_granted ('ROLE_ADMIN') or is_granted ('ROLE_TEACHER')%}
-            
             <td>
-          
-               
+              {# <a href="{{path('grade_detail',{'id': grade.id})}}">
+                <img src="{{ asset('images/file.png')}}" width="30" height="30">
+                </a> #}
                 <a href="{{path('grade_edit',{'id': grade.id})}}">
                     <img src="{{ asset('images/edit.png')}}" width="30" height="30">
                 </a>
@@ -85,8 +82,8 @@
                 >
                     <img src="{{ asset('images/delete.png')}}" width="30" height="30">
                 </a>
+                
             </td>
-            {% endif %}
             
         </tr>
         {% set i = i + 1 %}
@@ -94,5 +91,4 @@
     </tbody>
 </table>
 {% endblock %}
-
 
