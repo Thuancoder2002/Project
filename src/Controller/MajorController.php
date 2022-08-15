@@ -33,7 +33,7 @@ class MajorController extends AbstractController
         #[Route('/major/detail/{id}', name: 'major_detail')]
         public function studentDetail($id){
             $major=$this->getDoctrine()->getRepository(Major::class)->find($id);
-            if(major!=null){
+            if($major!=null){
                 return $this->render('major/detail.html.twig',[
                     'major'=>$major
                 ]);

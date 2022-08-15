@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container col-md-8 mt-3">
+   <div class="row">
+      <div class="col-md-4">
+         <div class="card">
+            <img src="{{ course.image }}" width="315" height="250">
+         </div>
+      </div>
+      <div class="col-md-8">
+         <div class="card">
+            <div class="card-header">
+               <h1 class="text text-primary text-center">{{ course.name }} </h1>
+            </div>
+   
+               <div class="card-body">
+               <h3 class="text text-danger">Course ID: {{ course.name }} </h3>
+               <h3 class="text text-danger">Course Describe: {{ course.describle }} </h3>
+               </div>
+
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}
