@@ -29,8 +29,6 @@
         <tr>
             <th>No</th>
             <th>Name Major</th>
-            <th> Student Name</th>
-
             <th>Actions</th>
         </tr>
     </thead>
@@ -41,44 +39,7 @@
         <tr>
             <td>{{ i }}</td>
             <td>{{ major.name }}</td>
-            <td> 
-                     {# {% if major.students!= null %}
-                           {{ major.student.name }} 
-                        </a>
-                     {% else %}
-                        N/A
-                     {% endif %} #}
-
-
-                  {% if major.student != null %}
-                       <ul>
-                        {% for student in major.student %}
-                           <a>
-                                 {{ student.name }}
-                              </a>
-                         {% else %}
-                        N/A
-                           
-                        {% endfor %}
-                        
-                     </ul>
-                     
-                {% endif %}  
-                 {# {% if major.classrooms != null %}
-                       <ul>
-                        {% for classroom in major.clasroom %}
-                           <li>
-                                 {{ classroom.name }}
-                              </a>
-                         {% else %}
-                        N/A
-                           </li>
-                        {% endfor %}
-                        
-                     </ul>
-                     
-                {% endif %}  #}
-            </td>
+           
             <td>
           
              <a href="{{path('major_detail',{'id': major.id})}}">
