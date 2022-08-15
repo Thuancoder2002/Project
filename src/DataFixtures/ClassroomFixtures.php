@@ -16,7 +16,6 @@ class ClassroomFixtures extends Fixture
             $classroom->setDescrible("This is my classroom");
             $manager->persist($classroom);
         }
-
         $manager->flush();
     }
 }

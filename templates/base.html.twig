@@ -28,6 +28,40 @@
 			}
 		</style>
 {% block header %}
+
+ {# {% if is_granted ('ROLE_TEACHER') %}
+ <div class="">
+             <header class="text-center text-white" style="background-color: #0a4275;">
+                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                     <li><a href="{{path('home')}}" class="nav-link px-3 link-secondary"><h2>Home</h2></a></li>
+                      <li><a href="{{path('teacher_index')}}" class="nav-link px-3 link-light"><h2>Teacher<h2></a></li>
+                      <li><a href="{{path('student_index')}}" class="nav-link px-3 link-light"><h2>Student<h2></a></li>
+		              <li><a href="{{path('classroom_index')}}" class="nav-link px-3 link-light"><h2>Class<h2></a></li>
+		               <li><a href="{{path('major_index')}}" class="nav-link px-3 link-light"><h2>Major<h2></a></li>
+		              <li><a href="{{path('grade_index')}}" class="nav-link px-3 link-light"><h2>Grade<h2></a></li>
+	                  <li><a href="{{path('course_index')}}" class="nav-link px-3 link-light"><h2>Course<h2></a></li>
+                 </ul>  
+             </header>
+         </div>
+
+{% endif %}	 #}
+ {# {% if  %}
+ <div class="">
+             <header class="text-center text-white" style="background-color: #0a4275;">
+                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                     <li><a href="{{path('home')}}" class="nav-link px-3 link-secondary"><h2>Home</h2></a></li>
+                      <li><a href="{{path('teacher_index')}}" class="nav-link px-3 link-light"><h2>Teacher<h2></a></li>
+                      <li><a href="{{path('student_index')}}" class="nav-link px-3 link-light"><h2>Student<h2></a></li>
+		              <li><a href="{{path('classroom_index')}}" class="nav-link px-3 link-light"><h2>Class<h2></a></li>
+		               <li><a href="{{path('major_index')}}" class="nav-link px-3 link-light"><h2>Major<h2></a></li>
+		              <li><a href="{{path('grade_index')}}" class="nav-link px-3 link-light"><h2>Grade<h2></a></li>
+	                  <li><a href="{{path('course_index')}}" class="nav-link px-3 link-light"><h2>Course<h2></a></li>
+                 </ul>  
+             </header>
+         </div>
+
+{% endif %}	 #}
+ {% if is_granted ('ROLE_ADMIN') or is_granted ('ROLE_TEACHER') %}
  <div class="">
              <header class="text-center text-white" style="background-color: #0a4275;">
                  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
@@ -46,10 +80,43 @@
              </header>
          </div>
 
+{% endif %}	
+ {% if is_granted ('ROLE_STUDENT') %}
+ <div class="">
+             <header class="text-center text-white" style="background-color: #0a4275;">
+                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                      <li>
+					  <a href="{{path('home')}}">
+                    <img src="{{ asset('images/home.png')}}"  width="60" height="60">
+                     </a>
+					 </li>
+					 <li>
+                      <li><a href="{{path('student_index')}}" class="nav-link px-3 link-light"><h2>Student<h2></a></li>
+		              <li><a href="{{path('classroom_index')}}" class="nav-link px-3 link-light"><h2>Class<h2></a></li>
+		               <li><a href="{{path('major_index')}}" class="nav-link px-3 link-light"><h2>Major<h2></a></li>
+		              <li><a href="{{path('grade_index')}}" class="nav-link px-3 link-light"><h2>Grade<h2></a></li>
+	                  <li><a href="{{path('course_index')}}" class="nav-link px-3 link-light"><h2>Course<h2></a></li>
+                 </ul>  
+             </header>
+         </div>
 
-
-
-			
+{% endif %}	
+						<div class="">
+             <header class="text-center text-white" style="background-color: #0a4275;">
+			 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+	<li class="nav-item">
+						<div class="container-fluid">
+							<a class="navbar-brand" href="{{ path('app_logout')}}"> 
+      							<img src="{{ asset('images/out.png')}}" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
+								Logout <i style="color: red">
+								({{ app.user ? app.user.username }})
+								</i> 
+    						</a>
+						</div>
+					</li>
+					  </ul>  
+             </header>
+         </div>
 {% endblock %}																											          
 {# show flash message #}
 {% block flash %}<div class="container-md col-md-5 mt-3 text-center">
