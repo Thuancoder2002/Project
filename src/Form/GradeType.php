@@ -22,7 +22,7 @@ class GradeType extends AbstractType
         $builder
             ->add('grade',  ChoiceType::class,
             [
-                'label' => 'Phân loại',
+                'label' => 'Grade',
                 'required' => true,
                 'choices' => [
                       ' ' =>' ',
@@ -36,7 +36,7 @@ class GradeType extends AbstractType
             ])
             ->add('comment', ChoiceType::class,
             [
-                'label' => 'Phân loại',
+                'label' => 'Evaluate',
                 'required' => true,
                 'choices' => [
                     ' ' =>' ',
@@ -49,7 +49,7 @@ class GradeType extends AbstractType
 
             ])
             ->add('student', EntityType::class, [
-                'label' => 'Course Name',
+                'label' => 'Student Name',
                 'required' => true,
                 'class' => Student::class,
                 'choice_label' => 'name',
@@ -57,7 +57,7 @@ class GradeType extends AbstractType
                 'expanded' => false
             ])
             ->add('teacher', EntityType::class, [
-                'label' => 'Course Name',
+                'label' => 'Teacher Name',
                 'required' => true,
                 'class' => Teacher::class,
                 'choice_label' => 'name',
