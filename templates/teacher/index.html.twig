@@ -8,21 +8,38 @@
         <th> <a class="btn btn-info text-center" href="{{ path('teacher_add')}}">Add new Teacher</a>
         </th>
 {% endif %}
-        <form action="{{path('teacher_search')}}" method="post">
-			<input type="search" name="name" id="">
-			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-		</form>
-	
-		<table class="table table-info table-hover mt-5">
-			<tr>
-				
-					<select onchange="window.location.href=this.value">
-						<option>Sort</option>
-						<option value="{{path('teacher_asc')}}">Ascending</option>
-						<option value="{{path('teacher_desc')}}">Descending</option>
-					</select>
- </tr>
-<table class="table table-info">
+					<div class="row mt-3">
+						<div class="col">
+							<div class="row">
+								<div class="col-5">
+									<h6 class="text text-success">Sort Teacher</h6>
+								</div>
+								<div class="col-7">
+									<select class="form-control" onchange="window.location.href=this.value">
+										<option>Select one</option>
+										<option value="{{ path('teacher_asc')}}"> Ascending</option>
+										<option value="{{ path('teacher_desc')}}"> Descending</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+						<div class="row">
+						<div class="col-5">
+							<h6 class="text text-success">Search Teacher</h6>
+						</div>
+						<div class="col-7">
+							<div class="form-group">
+								<form action="{{ path('teacher_search')}}" method="post">
+									<input class="form-control" type="search" name="name" placeholder="Enter book title">
+								</form>
+							</div>
+						</div>
+						</div>
+         
+        			 </div>
+			</div>
+<table class="table table-info mt-3">
 
     <thead>
         <tr>

@@ -50,19 +50,50 @@ class TeacherRepository extends ServiceEntityRepository
     // /**
     //  * @return Teacher[] Returns an array of Teacher objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+
+     public function sortTeacherAsc()
     {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder('teacher')
+            ->orderBy('teacher.id', 'ASC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
+    
+    public function sortTeacherDesc()
+    {
+        return $this->createQueryBuilder('teacher')
+            ->orderBy('teacher.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function search($keyword)
+    {
+        return $this->createQueryBuilder('teacher')
+            ->andWhere('teacher.name LIKE :key')
+            ->setParameter('key', '%' . $keyword . '%')
+            ->orderBy('teacher.name', 'ASC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult();
+    }
+
+    // public function findByExampleField($value)
+    // {
+    //     return $this->createQueryBuilder('t')
+    //         ->andWhere('t.exampleField = :val')
+    //         ->setParameter('val', $value)
+    //         ->orderBy('t.id', 'ASC')
+    //         ->setMaxResults(10)
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
+    
 
     /*
     public function findOneBySomeField($value): ?Teacher
