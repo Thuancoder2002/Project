@@ -45,8 +45,8 @@ class StudentController extends AbstractController
             
          }else{
             $this->addFlash(
-               'Error',
-               'Todo not found.Please try again!'
+               'Warning',
+               'Student not found.Please try again!'
             );
             return $this->redirectToRoute('student_index');
         }
@@ -94,17 +94,16 @@ class StudentController extends AbstractController
         $manager = $managerRegistry->getManager();
         $manager->remove($student);
         $manager->flush();
-        $this->addFlash('Info', 'Delete book succeed !');
+        $this->addFlash('Success', 'Delete book succeed !');
      }
      return $this->redirectToRoute('student_index');
    }
-
        
        #[Route('/edit/{id}', name: 'student_edit')]
        public function studentEdit ($id, Request $request) {
         $student = $this->getDoctrine()->getRepository(Student::class)->find($id);
         if ($student== null) {
-            $this->addFlash('Warning', 'Book not existed !');
+            $this->addFlash('Warning', 'Student not existed !');
          } else {
             $form = $this->createForm(StudentType::class,$student);
             $form->handleRequest($request);
@@ -112,7 +111,7 @@ class StudentController extends AbstractController
                 $manager = $this->getDoctrine()->getManager();
                 $manager->persist($student);
                 $manager->flush();
-                $this->addFlash('Info', 'Edit book succeed !');
+                $this->addFlash('Success', 'Edit Student succeed !');
                 return $this->redirectToRoute("student_index");
             }
             return $this->renderForm("student/edit.html.twig",
