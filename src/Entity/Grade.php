@@ -57,14 +57,14 @@ class Grade
         return $this;
     }
 
-    public function getStudentid(): ?Student
+    public function getStudent(): ?Student
     {
-        return $this->studentid;
+        return $this->student;
     }
 
-    public function setStudentid(?Student $studentid): self
+    public function setStudent(?Student $student): self
     {
-        $this->studentid = $studentid;
+        $this->student = $student;
 
         return $this;
     }

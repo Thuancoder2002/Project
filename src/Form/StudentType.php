@@ -98,14 +98,14 @@ class StudentType extends AbstractType
                 'multiple' => false,
                 'expanded' => false
             ])
-             ->add('grades', EntityType::class, [
-                'label' => 'Grades',
-                'required' => true,
-                'class' => Grade::class,
-                'choice_label' => 'grade',
-                'multiple' => true,
-                'expanded' => false
-            ])            
+            //  ->add('grades', EntityType::class, [
+            //     'label' => 'Grades',
+            //     'required' => true,
+            //     'class' => Grade::class,
+            //     'choice_label' => 'grade',
+            //     'multiple' => true,
+            //     'expanded' => false
+            // ])            
             ->add(
                 'save',
                 SubmitType::class,
