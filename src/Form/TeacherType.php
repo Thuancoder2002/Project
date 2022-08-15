@@ -21,6 +21,7 @@ class TeacherType extends AbstractType
         ->add('name',
         TextType::class,
         [
+            
             'label' => 'Student Name',
             'required'=> true,
             'attr' => [
