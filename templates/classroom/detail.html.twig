@@ -20,8 +20,10 @@
                        <ul>
                         {% for student in classroom.students %}
                            <a>
+                           <a class="text text-success text-decoration-none" href="{{ path('student_detail', {'id' : student.id })}}">
                                  {{ student.name }}
-                              </a>
+                              <br>
+                           </a>
                          {% else %}
                         N/A
                            

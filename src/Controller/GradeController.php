@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Grade;
 use App\Form\GradeType;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -35,7 +36,6 @@ class GradeController extends AbstractController
             if($form->isSubmitted() && $form->isValid()){
                 $manager=$this->getDoctrine()->getManager();
                 $manager->persist($grade);
-                $manager->persist($grade);
                 $manager->flush();
                 $this->addFlash(
                'Success',
@@ -51,7 +51,7 @@ class GradeController extends AbstractController
 
 
        #[Route('/grade/delete/{id}', name: 'grade_delete')]
-       public function gradeDelete($id, Request $request){
+       public function gradeDelete($id,ManagerRegistry $managerRegistry){
          $grade = $managerRegistry->getRepository(Grade::class)->find($id);
      if ($grade == null) {
         $this->addFlash('Warning', 'Book not existed !');

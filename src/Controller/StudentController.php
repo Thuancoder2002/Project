@@ -85,7 +85,12 @@ class StudentController extends AbstractController
      $student = $managerRegistry->getRepository(Student::class)->find($id);
      if ($student == null) {
         $this->addFlash('Warning', 'Book not existed !');
-     } else {
+     }
+    //  else if (count($student->getmajor()) >= 1){ //check xem genre này có ràng buộc với book hay không trước khi xóa
+    //      //nếu có tối thiểu 1 book thì hiển thị lỗi và không cho xóa  
+    //   $this->addFlash('Warning', 'Can not delete');
+    //  } 
+    else {
         $manager = $managerRegistry->getManager();
         $manager->remove($student);
         $manager->flush();
