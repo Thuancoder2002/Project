@@ -8,20 +8,24 @@
         <th> <a class="btn btn-info text-center" href="{{ path('grade_add')}}">Add new grade</a>
         </th>
         {% endif %}
-        <form action="" method="post">
+        <br>
+        {# <form action="" method="post">
 			<input type="search" name="name" id="">
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-		</form>
+		</form> #}
 	
 		<table class="table table-info table-hover mt-5">
 			<tr>
 				
-					<select onchange="window.location.href=this.value">
-						<option>Sort</option>
-						<option value="">Ascending</option>
-						<option value="">Descending</option>
-					</select>
- </tr>
+				
+									<h6 class="text text-success">Sort Grade</h6>							
+									<select class="form-control" onchange="window.location.href=this.value">
+										<option>Select one</option>
+										<option value="{{ path('grade_asc')}}"> Ascending</option>
+										<option value="{{ path('grade_desc')}}"> Descending</option>
+									</select>
+							
+            </tr>
  </div>
 <table class="table table-info">
     <thead>

@@ -50,6 +50,25 @@ class GradeRepository extends ServiceEntityRepository
     // /**
     //  * @return Grade[] Returns an array of Grade objects
     //  */
+
+    public function sortGradeAsc()
+    {
+        return $this->createQueryBuilder('grade')
+            ->orderBy('grade.grade', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    
+    public function sortGradeDsc()
+    {
+        return $this->createQueryBuilder('grade')
+            ->orderBy('grade.grade', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     /*
     public function findByExampleField($value)
     {

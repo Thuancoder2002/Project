@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Grade;
 use App\Form\GradeType;
+use App\Repository\GradeRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -83,11 +84,30 @@ class GradeController extends AbstractController
             return $this->redirectToRoute("grade_index");
 
             }
-            return $this->renderForm("grade/add.html.twig",[
+            return $this->renderForm("grade/edit.html.twig",[
                 'gradeForm'=>$form
             ]);
 
 
+          }
+
+          #[Route('/asc', name: 'grade_asc')]
+          public function sortAsc(GradeRepository $gradeRepository, ManagerRegistry $registry) {
+              $grade = $gradeRepository->sortGradeAsc();
+              return $this->render("grade/index.html.twig",
+                                   [
+                                       'grade' => $grade,
+                                   ]);
+          }
+       
+          #[Route('/desc', name: 'grade_desc')]
+          public function sortDesc(GradeRepository $gradeRepository, ManagerRegistry $registry) {
+             
+            $grade = $gradeRepository->sortGradeDsc();
+              return $this->render("grade/index.html.twig",
+                                [
+                                    'grade' => $grade,
+                                ]);
           }
 
 
