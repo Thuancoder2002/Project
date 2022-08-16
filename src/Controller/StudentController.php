@@ -70,13 +70,10 @@ class StudentController extends AbstractController
                'You have Successfully added'
             );  
             return $this->redirectToRoute("student_index");
-
             }
             return $this->renderForm("student/add.html.twig",[
                 'studentForm'=>$form
             ]);
-
-
 
     }
  
