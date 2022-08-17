@@ -13,6 +13,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class StudentType extends AbstractType
@@ -105,7 +106,22 @@ class StudentType extends AbstractType
             //     'choice_label' => 'grade',
             //     'multiple' => true,
             //     'expanded' => false
-            // ])            
+            
+               ->add('sex',  ChoiceType::class,
+            [
+                'label' => 'Sex',
+                'required' => true,
+                'choices' => [
+                      ' ' =>' ',
+                    'FeMale' => 'Female',
+                    'Male' => 'Male',
+                   
+                ],
+                'multiple' => false, 
+                'expanded' => false  
+
+            ])
+
             ->add(
                 'save',
                 SubmitType::class,

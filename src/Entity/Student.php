@@ -45,6 +45,9 @@ class Student
     #[ORM\ManyToOne(targetEntity: Classroom::class, inversedBy: 'students')]
     private $classroom;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $sex;
+
     public function __construct()
     {
         $this->grades = new ArrayCollection();
@@ -205,6 +208,18 @@ class Student
     public function setClassroom(?Classroom $classroom): self
     {
         $this->classroom = $classroom;
+
+        return $this;
+    }
+
+    public function getSex(): ?string
+    {
+        return $this->sex;
+    }
+
+    public function setSex(string $sex): self
+    {
+        $this->sex = $sex;
 
         return $this;
     }

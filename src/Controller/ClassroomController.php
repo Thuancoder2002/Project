@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Classroom;
 use App\Form\ClassroomType;
+use App\Repository\ClassroomRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -94,6 +95,21 @@ class ClassroomController extends AbstractController
             return $this->renderForm("classroom/add.html.twig",[
                 'ClassForm'=>$form
             ]);
-    }
+
+
+          
+
+   }  
+        #[Route('/classroom/search', name:'classroom_search')]
+   public function classSearch(Request $request, ClassroomRepository $classroomRepository, ManagerRegistry $registry){
+        $keyword = $request->get('name');
+       $classroom = $classroomRepository->search($keyword);
+       return $this->render("classroom/index.html.twig",
+                            [
+                                'classroom' => $classroom,
+                            ]);
+   }
+
+    
 
 }

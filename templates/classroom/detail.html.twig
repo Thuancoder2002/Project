@@ -12,30 +12,52 @@
                   <table class="table table-bordered">
                      <tr>
                         <th>{{classroom.name}}</th>
-                     
-                       
                      </tr>
+                     
                      <tr>
                         <td>  {% if classroom.students != null %}
                        <ul>
                         {% for student in classroom.students %}
                            <a>
                            <a class="text text-success text-decoration-none" href="{{ path('student_detail', {'id' : student.id })}}">
-                                 {{ student.name }}
+                                 {{ student.name }}  
                               <br>
                            </a>
                          {% else %}
                         N/A
                            
                         {% endfor %}
-                        
                      </ul>
+                     <ul>
+
+                     {% set Female = 0 %}  
+                     {% set Male = 0 %} 
+                        {% for student in classroom.students %}   
+                     {% if  student.sex == "Male" %}
+                            {% set Male = Male +1 %}   
+                       {% else %}
+                     {% set Female = Female +1 %}
+                     </ul>
+                     {% endif %}
                      
-                {% endif %} </td>
+                     {% endfor %} 
+                     Total student Female  :  {{  Female }}
+                     <br>
+                     Total student Male  :  {{  Male }}
+                     <br>
+                    Total student of class :  {{  classroom.students | length }}
+
+                {% endif %} 
+                
+               </td>
                      
                         
                      </tr>
+                     
                   </table>
+
+
+                  
                </div>  
              
          </div>
