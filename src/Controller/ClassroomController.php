@@ -61,9 +61,8 @@ class ClassroomController extends AbstractController
           $classroom = $managerRegistry->getRepository(Classroom::class)->find($id);
      if ($classroom == null) {
         $this->addFlash('Warning', 'Book not existed !');
-    } else if (count($classroom->getstudents()) >= 1){ //check xem genre này có ràng buộc với book hay không trước khi xóa
-         //nếu có tối thiểu 1 book thì hiển thị lỗi và không cho xóa  
-      $this->addFlash('Warning', 'Can not delete this genre');
+    } else if (count($classroom->getstudents()) >= 1){ 
+      $this->addFlash('Warning', 'Can not delete this classroom');
      }   
       else {
         $manager = $managerRegistry->getManager();

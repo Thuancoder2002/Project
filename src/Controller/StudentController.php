@@ -69,7 +69,7 @@ class StudentController extends AbstractController
      }
 
      else if (count($student->getcourses()) >= 1){ 
-      $this->addFlash('Warning', 'Can not delete this genre');
+      $this->addFlash('Warning', 'Can not delete student');
      }
 
     else {
