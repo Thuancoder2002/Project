@@ -21,14 +21,15 @@
                   <h3 class="text text-success">Email Contact: {{ student.email }} </h3>
 
                   <h3 class="text text-success">Phone Number: {{ student.phone }} </h3>
-                  <h3 class="text text-warning">Major : 
+                  <h5 class="text">Major : 
                      {% if student.major != null %}
-                        {# <a href="{{ path('genre_detail', {'id': book.genre.id })}}"> #}
                            {{ student.major.name }} 
-                        </a>
                      {% else %}
                         N/A
+                        </li>
+                     
                      {% endif %}
+
                   </h3>
                   <h3 class="text text-warning">Subjects currently studying: </h3>
                   {% if student.courses != null %}

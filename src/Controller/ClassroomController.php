@@ -16,11 +16,6 @@ class ClassroomController extends AbstractController
     public function clasroomindex()
     {
         $classroom=$this->getDoctrine()->getRepository(Classroom::class)->findAll();
-       if (!$classroom) {
-            throw $this->createNotFoundException(
-                'No sclassroom found in the database.'
-            );
-        }
         return $this->render('classroom/index.html.twig', [
             'classroom' => $classroom,
         ]);

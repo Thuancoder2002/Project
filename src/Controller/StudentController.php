@@ -12,40 +12,27 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
-#[Route('/student')]
+   #[Route('/student')]
 class StudentController extends AbstractController
 {
-    
        #[Route('/', name: 'student_index')]
     public function student_index()
-    {
+     {
         $student=$this->getDoctrine()->getRepository(Student::class)->findAll();
-        $course = $this->getDoctrine()->getRepository(Course::class)->findAll();
-
-        if (!$student) {
-            throw $this->createNotFoundException(
-                'No students found in the database.'
-            );
-        }
-        return $this->render('student/index.html.twig', [
+            return $this->render('student/index.html.twig', [
             'student' => $student,
-            'course'=>$course
         ]);
-    }
-
-
-          #[Route('/detail/{id}', name: 'student_detail')]
+     }
+        #[Route('/detail/{id}', name: 'student_detail')]
        public function studentDetail($id){
       $student = $this->getDoctrine()->getRepository(Student::class)->find($id);
          if($student!=null){
                return $this->render('student/detail.html.twig',[
                 'student'=>$student
             ]);  
-            
          }else{
             $this->addFlash(
-               'Warning',
+              'Warning',
                'Student not found.Please try again!'
             );
             return $this->redirectToRoute('student_index');
@@ -53,9 +40,7 @@ class StudentController extends AbstractController
 
        }
 
-
-
-    #[Route('/add', name: 'student_add')]
+         #[Route('/add', name: 'student_add')]
     public function sdtudentadd(Request $request){
             $student= new Student; 
             $form=$this->createForm(StudentType::class,$student);
@@ -63,7 +48,6 @@ class StudentController extends AbstractController
             if($form->isSubmitted() && $form->isValid()){
                 $manager=$this->getDoctrine()->getManager();
                 $manager->persist($student);
-             
                 $manager->flush();
                 $this->addFlash(
                'Success',
@@ -74,7 +58,6 @@ class StudentController extends AbstractController
             return $this->renderForm("student/add.html.twig",[
                 'studentForm'=>$form
             ]);
-
     }
  
      #[Route('/delete/{id}', name: 'student_delete')]
@@ -83,10 +66,11 @@ class StudentController extends AbstractController
      if ($student == null) {
         $this->addFlash('Warning', 'Book not existed !');
      }
-    //  else if (count($student->getmajor()) >= 1){ //check xem genre này có ràng buộc với book hay không trước khi xóa
-    //      //nếu có tối thiểu 1 book thì hiển thị lỗi và không cho xóa  
-    //   $this->addFlash('Warning', 'Can not delete');
-    //  } 
+     
+     else if (count($student->getcourses()) >= 1){ 
+      $this->addFlash('Warning', 'Can not delete this genre');
+     }
+
     else {
         $manager = $managerRegistry->getManager();
         $manager->remove($student);
@@ -96,6 +80,7 @@ class StudentController extends AbstractController
      return $this->redirectToRoute('student_index');
    }
        
+
        #[Route('/edit/{id}', name: 'student_edit')]
        public function studentEdit ($id, Request $request) {
         $student = $this->getDoctrine()->getRepository(Student::class)->find($id);
@@ -118,6 +103,8 @@ class StudentController extends AbstractController
          }
      }
 
+
+
      #[Route('/asc', name: 'student_asc')]
    public function sortAsc(StudentRepository $studentRepository, ManagerRegistry $registry) {
        $student = $studentRepository->sortStudentAsc();
@@ -128,8 +115,7 @@ class StudentController extends AbstractController
    }
 
    #[Route('/desc', name: 'student_desc')]
-   public function sortDesc(StudentRepository $studentRepository, ManagerRegistry $registry) {
-      
+   public function sortDesc(StudentRepository $studentRepository, ManagerRegistry $registry) { 
        $student = $studentRepository->sortStudentDesc();
        return $this->render("student/index.html.twig",
                             [

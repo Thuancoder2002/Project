@@ -15,8 +15,7 @@
     <thead>
         <tr>
             <th>No</th>
-            <th>Name Class</th>
-     
+            <th>Name Class</th> 
             <th>Actions</th>
         </tr>
     </thead>
@@ -26,12 +25,10 @@
     {% for classroom in classroom %}
         <tr>
             <td>{{ i }}</td>
-            <td>{{ classroom.name }}</td>
             <td>
-          
-                <a href="{{path('classroom_detail',{'id': classroom.id})}}">
-                <img src="{{ asset('images/file.png')}}" width="30" height="30">
-                </a>      
+             <a href="{{path('classroom_detail',{'id': classroom.id})}}">
+            {{ classroom.name }}</td>
+            <td>     
                 <a href="{{path('classroom_edit',{'id': classroom.id})}}">
                     <img src="{{ asset('images/edit.png')}}" width="30" height="30">
                 </a>
