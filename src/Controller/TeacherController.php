@@ -57,7 +57,6 @@ class TeacherController extends AbstractController
             if($form->isSubmitted() && $form->isValid()){
                 $manager=$this->getDoctrine()->getManager();
                 $manager->persist($teacher);
-                $manager->persist($teacher);
                 $manager->flush();
                 $this->addFlash(
                'Success',

@@ -36,7 +36,9 @@
             <th>Teacher grading</th>
             <th>Subjects</th>
             <th>Comment</th>
+            {% if is_granted ('ROLE_ADMIN') %}
             <th>Action</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>

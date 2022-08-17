@@ -4,8 +4,10 @@
 <div class="container col-md-10 text-center mt-3">
 <tr>
         <th colspan="3" ><li><a class="text text-primary"><h2>List Class<h2></a></li></th>
+        {% if is_granted ('ROLE_ADMIN') %}
         <th> <a class="btn btn-info text-center" href="{{ path('classroom_add')}}">Add new class</a>
         </th>
+        {% endif %}
       
  </tr>
 
@@ -16,8 +18,9 @@
         <tr>
             <th>No</th>
             <th>Name Class</th>
-     
+                 
             <th>Actions</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -27,11 +30,13 @@
         <tr>
             <td>{{ i }}</td>
             <td>{{ classroom.name }}</td>
+             
             <td>
-          
+                
                 <a href="{{path('classroom_detail',{'id': classroom.id})}}">
                 <img src="{{ asset('images/file.png')}}" width="30" height="30">
-                </a>      
+                </a>
+                 {% if is_granted ('ROLE_ADMIN') %}     
                 <a href="{{path('classroom_edit',{'id': classroom.id})}}">
                     <img src="{{ asset('images/edit.png')}}" width="30" height="30">
                 </a>
@@ -40,8 +45,9 @@
                 >
                     <img src="{{ asset('images/delete.png')}}" width="30" height="30">
                 </a>
+                {% endif %} 
             </td>
-
+             
                  
            
         </tr>
