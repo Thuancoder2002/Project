@@ -60,13 +60,14 @@ class StudentController extends AbstractController
             ]);
     }
  
+    
      #[Route('/delete/{id}', name: 'student_delete')]
      public function studentDelete ($id, ManagerRegistry $managerRegistry) {
      $student = $managerRegistry->getRepository(Student::class)->find($id);
      if ($student == null) {
         $this->addFlash('Warning', 'Book not existed !');
      }
-     
+
      else if (count($student->getcourses()) >= 1){ 
       $this->addFlash('Warning', 'Can not delete this genre');
      }

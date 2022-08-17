@@ -31,10 +31,13 @@
             <td>{{ i }}</td>
             <td>{{ classroom.name }}</td>
             <td>
+
           
                 <a href="{{path('classroom_detail',{'id': classroom.id})}}">
                 <img src="{{ asset('images/file.png')}}" width="30" height="30">
                 </a>      
+                 {% if is_granted ('ROLE_ADMIN') %}
+  
                 <a href="{{path('classroom_edit',{'id': classroom.id})}}">
                     <img src="{{ asset('images/edit.png')}}" width="30" height="30">
                 </a>
