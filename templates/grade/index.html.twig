@@ -3,7 +3,7 @@
 {% block body %}
 <div class="container col-md-10 text-center mt-3">
 <tr>
-        <th colspan="3" ><li><a class="text text-primary"><h2>List of Course<h2></a></li></th>
+        <th colspan="3" ><li><a class="text text-primary"><h2>List of Grade<h2></a></li></th>
          {% if is_granted ('ROLE_ADMIN') or is_granted ('ROLE_TEACHER')%}
         <th> <a class="btn btn-info text-center" href="{{ path('grade_add')}}">Add new grade</a>
         </th>
@@ -27,6 +27,9 @@
 							
             </tr>
  </div>
+ 
+    
+ 
 <table class="table table-info">
     <thead>
         <tr>
@@ -92,6 +95,7 @@
                 onclick="return confirm('Are you sure to delete this Grade ?')";
 
                 onclick="return confirm('Are you sure to delete this grade ?')";
+
                 >
                     <img src="{{ asset('images/delete.png')}}" width="30" height="30">
                 </a>

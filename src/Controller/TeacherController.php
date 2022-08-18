@@ -77,7 +77,11 @@ class TeacherController extends AbstractController
      $teacher = $managerRegistry->getRepository(Teacher::class)->find($id);
      if ($teacher == null) {
         $this->addFlash('Warning', 'Teacher not existed !');
-     } else {
+     } 
+     else if (count($teacher->getcourses()) >= 1){ 
+        $this->addFlash('Warning', 'Can not delete teacher');
+       }
+     else {
         $manager = $managerRegistry->getManager();
         $manager->remove($teacher);
         $manager->flush();

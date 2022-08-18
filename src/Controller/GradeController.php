@@ -27,16 +27,31 @@ class GradeController extends AbstractController
         ]);
     }
 
-
+    
 
     #[Route('/grade/add', name: 'grade_add')]
+
     public function gradeadd(Request $request){
-            $grade= new Grade; 
+            $grade= new Grade;
+         
             $form=$this->createForm(GradeType::class,$grade);
             $form->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()){
-                $manager=$this->getDoctrine()->getManager();
+                $a = $grade->getGrade();
+                if($a>0 and $a<5 ){
+                    $grade-> setComment('Refer');
+               }else if($a>=5 and $a<7){
+                    $grade-> setComment('Pass');
+               }
+               else if($a>=7 and $a<=8){
+                $grade-> setComment('Merit');
+               }
+               else{
+                $grade-> setComment('Dis');
+               }
+               $manager=$this->getDoctrine()->getManager();
                 $manager->persist($grade);
+               
                 $manager->flush();
                 $this->addFlash(
                'Success',
@@ -75,7 +90,7 @@ class GradeController extends AbstractController
             if($form->isSubmitted() && $form->isValid()){
                 $manager=$this->getDoctrine()->getManager();
                 $manager->persist($grade);
-                $manager->persist($grade);
+               
                 $manager->flush();
                 $this->addFlash(
                'Success',
