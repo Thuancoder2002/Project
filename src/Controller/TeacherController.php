@@ -59,6 +59,7 @@ class TeacherController extends AbstractController
                 $manager->persist($teacher);
                 $manager->flush();
                 $this->addFlash(
+
                     
                'Success',
                'You add Successfully'
