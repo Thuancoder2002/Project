@@ -64,15 +64,14 @@ class ClassroomRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Classroom
+     public function search($keyword)
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
+        return $this->createQueryBuilder('classroom')
+            ->andWhere('classroom.name LIKE :key')
+            ->setParameter('key', '%' . $keyword . '%')
+
+            ->setMaxResults(5)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getResult();
     }
-    */
 }

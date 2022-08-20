@@ -84,7 +84,6 @@ class GradeType extends AbstractType
                     'label' => 'Save'
                 ]
             )
-            
         ;
     }
 
