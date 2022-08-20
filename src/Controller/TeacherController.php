@@ -48,7 +48,7 @@ class TeacherController extends AbstractController
        }
 
 
-
+    #[IsGranted("ROLE_ADMIN")]
     #[Route('/teacher/add', name: 'teacher_add')]
     public function teacheradd(Request $request){
             $teacher= new Teacher; 
@@ -59,6 +59,7 @@ class TeacherController extends AbstractController
                 $manager->persist($teacher);
                 $manager->flush();
                 $this->addFlash(
+                    
                'Success',
                'You add Successfully'
             );  
@@ -72,6 +73,7 @@ class TeacherController extends AbstractController
 
 
     }
+    #[IsGranted("ROLE_ADMIN")]
      #[Route('/teacher/delete/{id}', name: 'teacher_delete')]
      public function teacherDelete ($id, ManagerRegistry $managerRegistry) {
      $teacher = $managerRegistry->getRepository(Teacher::class)->find($id);
@@ -90,7 +92,7 @@ class TeacherController extends AbstractController
      return $this->redirectToRoute('teacher_index');
    }
 
-
+    #[IsGranted("ROLE_ADMIN")]
        #[Route('/teacher/edit/{id}', name: 'teacher_edit')]
        public function studentEdit ($id, Request $request) {
         $teacher = $this->getDoctrine()->getRepository(Teacher::class)->find($id);
